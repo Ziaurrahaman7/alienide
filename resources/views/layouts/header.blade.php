@@ -149,7 +149,7 @@ h1, .h1 {font-family: Miso;font-size: 56px;font-weight: 400;color: #d73e4d;text-
 
 
 <section class="section  "
-         data-background-image="https://www.alienide.com/wp-content/uploads/2015/07/bg-section-stories-1.jpg"
+         data-background-image="{{asset('uploads/'.$banarinfo->image)}}"
          data-background="rgba(30,45,58,0.80)"
          data-shadow=""
          data-nav-color="#ffffff"

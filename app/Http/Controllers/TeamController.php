@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banar;
+use App\Models\Team;
+use Egulias\EmailValidator\Warning\TLD;
 use Illuminate\Http\Request;
 
-class BanarController extends Controller
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class BanarController extends Controller
      */
     public function index()
     {
-        $banars = Banar::all();
-        return view('admin.banarsection',['banars' => $banars]);
+        $teams = Team::all();
+        return view('admin.team',['teams' => $teams]);
     }
 
     /**
@@ -25,7 +26,7 @@ class BanarController extends Controller
      */
     public function create()
     {
-        return view('admin.banarForm');
+        return view('admin.teamForm');
     }
 
     /**
@@ -36,26 +37,26 @@ class BanarController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->input();
-        $this->validate($request,[
-            'image'        =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'title' => 'required',
-            'active' => 'required',
-        ]);
-        $banar = new Banar();
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('uploads', $filename);
-            $banar->image = $filename;
-        }
-     
-        $data = $request->all();
-        $data['image']= $banar->image;
-        $banar = Banar::create($data);
-        $banar->save();
-        return redirect()->back()->with('status', 'product add succesfully');
+       // return $request->input();
+       $this->validate($request,[
+        'image'        =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'name' => 'required',
+        'position' => 'required',
+    ]);
+    $team = new Team();
+    if($request->hasFile('image')){
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $file->move('uploads', $filename);
+        $team->image = $filename;
+    }
+ 
+    $data = $request->all();
+    $data['image']= $team->image;
+    $team = Team::create($data);
+    $team->save();
+    return redirect()->back()->with('status', 'add succesfully');
     }
 
     /**
@@ -77,8 +78,8 @@ class BanarController extends Controller
      */
     public function edit($id)
     {
-        $banar= Banar::find($id);
-        return view('admin.editBanar',["banar"=>$banar]);
+        $team= Team::find($id);
+        return view('admin.editTeam',["team"=>$team]);
     }
 
     /**
@@ -90,22 +91,22 @@ class BanarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $banar = Banar::find($id);
+        $team = Team::find($id);
         if($request->hasFile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
             $file->move('uploads', $filename);
-            $banar->image = $filename ;
+            $team->image = $filename ;
         }
         $data = $request->all();
-        $updimg = $banar['image'];
+        $updimg = $team['image'];
         $data['image']=isset($filename) ? $filename: $updimg;
         // $data['image']=$upd['image'];
         // dd( $data['image']);
-        $banar->update($data);
+        $team->update($data);
         // dd($data);
-        return redirect('admin/banar');
+        return redirect('admin/team');
     }
 
     /**
@@ -116,8 +117,8 @@ class BanarController extends Controller
      */
     public function destroy($id)
     {
-        $banar= Banar::find($id);
-        $banar->delete();
-        return redirect('admin/banar');
+        $team= Team::find($id);
+        $team->delete();
+        return redirect('admin/team');
     }
 }

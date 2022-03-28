@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Banar extends Model
+class Team extends Model
 {
     use HasFactory;
-    protected $fillable =[
-        'title',
-        'image',
-        'short_description',
-        'button_txt',
-        'active'
+    protected $fillable = [
+        'name',
+        'position',
+        'description',
+        'image'
     ];
 }

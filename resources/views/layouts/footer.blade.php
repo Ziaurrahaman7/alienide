@@ -2,20 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4 left-align">
-                <div class="copyright">© Alienide Interactive 2016 - 2020</div>
+                <div class="copyright">{{$siteSetting->copyright}}</div>
             </div>
 
             <div class="col-sm-4">
                 <div class="social">
-                <a href="https://www.facebook.com/AlienideInteractive/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="{{$siteSetting->facebook}}" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
             
-                <a href="https://www.youtube.com/channel/UCiczP004MzC_IkiKSsYLskA/videos" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
+                <a href="{{$siteSetting->youtube}}" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
             </div>            </div>
 
             <div class="col-sm-4 right-align">
                             </div>
             <div class="col-sm-4">
-                <div class="new"> A <a href="http://www.softwindtech.com/" target="_blank"> Softwind Tech Ltd </a>Company</div>
+                <div class="new"> A <a href="{{$siteSetting->otherlink}}" target="_blank"> Softwind Tech Ltd </a>Company</div>
             </div>
         </div>
     </div>

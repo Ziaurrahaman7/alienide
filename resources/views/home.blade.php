@@ -1,13 +1,12 @@
 @extends('layouts.app')
 @section('content')
 <div class="section-content ">
-    <div class="container section-wrap"
-         style="">
+    <div class="container section-wrap" style="">
         
 <div class="row ">
     
 
-<div         class="col-md-12  text-center">
+<div class="col-md-12  text-center">
     
 
 <div class="logo-box">
@@ -21,7 +20,7 @@
 
 
 
-<h1 class="section-title "  data-appear-animation="bounceInUp" data-appear-animation-delay="100">Creativity is in our blood</h1>
+<h1 class="section-title "  data-appear-animation="bounceInUp" data-appear-animation-delay="100">{{$banarinfo->title}}</h1>
 
 
 
@@ -30,7 +29,7 @@
      data-appear-animation-delay="300">
 
 <p class="descriptions "
-   style="">Creativity is inseparable part of our life both in studio and outside of it. We love to see things moving, making objects dynamic and want them to look beautiful with lucid visual effect and highly interactive features.</p>
+   style="">{{$banarinfo->short_description}}</p>
 
 
 
@@ -44,7 +43,7 @@
 <div class="animation "
      data-appear-animation="bounceInUp"
      data-appear-animation-delay="500">
-<a class="btn btn-danger btn-lg" href="https://www.youtube.com/watch?v=_C0u2RvsVlY" target="_blank" rel="noopener noreferrer">Our Demoreel</a><br />
+<a class="btn btn-danger btn-lg" href="" target="_blank" rel="noopener noreferrer">{{$banarinfo->button_txt}}</a><br />
 </div>
 
 
@@ -89,7 +88,7 @@
 <div class="animation "
      data-appear-animation="fadeInDownBig"
      data-appear-animation-delay="300">
-<img loading="lazy" class="alignnone size-full wp-image-24" src="https://www.alienide.com/wp-content/uploads/2015/07/bg-section-stories-1.jpg" alt="about-us" width="1650" height="1100" /><br />
+<img loading="lazy" class="alignnone size-full wp-image-24" src="{{asset('uploads/'.$about->image)}}" alt="about-us" width="1650" height="1100" /><br />
 </div>
 
 
@@ -104,12 +103,12 @@
      data-appear-animation="fadeInUpBig"
      data-appear-animation-delay="300">
 
-<h1 class="section-title " >Alienide Interactive is the playground of technologies that works to create digital illusions through Video Games and Simulations</h1>
+<h1 class="section-title " >{{$about->title}}</h1>
 
 
 
 <p class="descriptions "
-   style="">ALIENIDE Interactive is a Dhaka based full-fledged game studio which works with different sectors of gaming and engineering. Over the year, we have grown our expertise on high-end game engines such as Unity and Unreal. We have worked with cutting edge gaming devices and controllers such as Microsoft XBOX KINECT, PS3 Move and PS3 Eye, Nintendo Wii Mote, LEAP Motion, Myo Armband, Emotiv EPOC, Oculus VR and Google Cardboard etc.With team members from diverse background such as Computer Science, Fine Arts, 2D and 3D Graphics and Animation, Electronics and Electrical engineering and Robotics and having previous experience of designing military simulators and participation in robotics project contest by NASA, we aim to take video games to the next level where we combine electronics with video games and virtual reality to create complex simulation system.</p>
+   style="">{{$about->description}}</p>
 
 
 </div>
@@ -162,17 +161,10 @@
                         
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#" data-filter="*" class="active">All</a></li>
-
-                                                                        <li><a href="#" data-filter=".360-tour">360 Tour</a></li>
-                                                                        <li><a href="#" data-filter=".augmented-reality">Augmented Reality</a></li>
-                                                                        <li><a href="#" data-filter=".interactive-motion">Interactive Motion</a></li>
-                                                                        <li><a href="#" data-filter=".kinect-motion">KINECT Motion</a></li>
-                                                                        <li><a href="#" data-filter=".multiplayer-rowing-game">Multiplayer Rowing Game</a></li>
-                                                                        <li><a href="#" data-filter=".robotics-simulation">Robotics &amp; Simulation</a></li>
-                                                                        <li><a href="#" data-filter=".video-games">Video Games</a></li>
-                                                                        <li><a href="#" data-filter=".virtual-reality">Virtual Reality</a></li>
-                                                                        <li><a href="#" data-filter=".web-games">Web Games</a></li>
-                                
+                                @foreach ($categorys as $category )
+                                <li><a href="#" data-filter=".wc{{$category->id}}">
+                                    {{$category->name}}</a></li>
+                                @endforeach
                             </ul>
 
                         
@@ -207,381 +199,27 @@
                 </div><!-- .navigation -->
                 <div class="single-work"></div>
             </div><!-- .works-opened -->
-
             <div class="row filter-elements">
-
-                
-                                            
-                        <div class="col-xs-12 col-sm-6 col-md-3 360-tour ">
-                            <a href="#" class="work"
-                               data-id="325"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="100">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="Boropukuria Coal Mine VR" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Boropukuria Coal Mine VR</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 video-games virtual-reality ">
+@foreach ($categorys as $category )
+@foreach($category->work as $work)
+                        <div class="col-xs-12 col-sm-6 col-md-3 wc{{$category->id}} virtual-reality ">
                             <a href="#" class="work"
                                data-id="342"
                                data-link=""
                                data-appear-animation="fadeInDown"
                                data-appear-animation-delay="200">
                                 <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2_0006_Port_3_Clemon-1600x1600.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="Clemon VR Dive" loading="lazy" />                                    </div>
+                                    <img width="270" height="167" src="{{asset('uploads/'.$work->image)}}" class="attachment-270x182 size-270x182 wp-post-image" alt="Clemon VR Dive" loading="lazy" />                                    </div>
 
                                 <div class="hover"><i class="fa fa-arrows-alt"></i></div>
 
-                                <h3 class="title">Clemon VR Dive</h3>
+                                <h3 class="title">{{$work->title}}</h3>
                             </a><!-- .work -->
                         </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 video-games virtual-reality ">
-                            <a href="#" class="work"
-                               data-id="346"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="300">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2_0002_Port_2_Mojo-1280x852.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="Mojo World-VR" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Mojo World-VR</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 robotics-simulation ">
-                            <a href="#" class="work"
-                               data-id="349"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="400">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2_0003_maze-1280x852.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="The Maze" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">The Maze</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 video-games virtual-reality ">
-                            <a href="#" class="work"
-                               data-id="353"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="500">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/racing.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="Go Beyond Racing" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Go Beyond Racing</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 interactive-motion ">
-                            <a href="#" class="work"
-                               data-id="356"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="600">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2_0004_Port_8_Kinect-Wall-1280x852.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="KINECT Motion Activated Wall" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">KINECT Motion Activated Wall</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 video-games ">
-                            <a href="#" class="work"
-                               data-id="359"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="700">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/rexona.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="Rexona Agent Fresh" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Rexona Agent Fresh</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 robotics-simulation video-games ">
-                            <a href="#" class="work"
-                               data-id="363"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="800">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2_0000_Port_1_TVS-1280x852-1.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="TVS Apache-Racing Throttle DNA" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">TVS Apache-Racing Throttle DNA</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 interactive-motion robotics-simulation video-games ">
-                            <a href="#" class="work"
-                               data-id="367"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="900">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2_0007_paris-800x800.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="Paris Getaway" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Paris Getaway</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 video-games virtual-reality ">
-                            <a href="#" class="work"
-                               data-id="370"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1000">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2_0005_Port_7_Robi-Cricket-640x426.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="Cricket Mania VR" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Cricket Mania VR</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 kinect-motion multiplayer-rowing-game video-games ">
-                            <a href="#" class="work"
-                               data-id="373"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1100">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2017/04/Untitled-2_0001_nouka-1280x852.jpg" class="attachment-270x182 size-270x182 wp-post-image" alt="Banglalink Nouka Baich" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Banglalink Nouka Baich</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 augmented-reality ">
-                            <a href="#" class="work"
-                               data-id="395"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1200">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/3d-color-magic.png" class="attachment-270x182 size-270x182 wp-post-image" alt="3D Color Magic" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">3D Color Magic</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 robotics-simulation virtual-reality ">
-                            <a href="#" class="work"
-                               data-id="401"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1300">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/Big-kahuna.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Big Kahuna" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Big Kahuna</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 video-games ">
-                            <a href="#" class="work"
-                               data-id="404"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1400">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/escape-racing.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Escape Racing" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Escape Racing</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 robotics-simulation virtual-reality ">
-                            <a href="#" class="work"
-                               data-id="407"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1500">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/in-to-the-blue.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Into the Blue" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Into the Blue</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 robotics-simulation video-games ">
-                            <a href="#" class="work"
-                               data-id="410"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1600">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/Pitha-chor.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Mojo Pitha Chor" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Mojo Pitha Chor</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 robotics-simulation video-games virtual-reality ">
-                            <a href="#" class="work"
-                               data-id="413"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1700">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/Tour-De-Bangladesh.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Tour De Bangladesh" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Tour De Bangladesh</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 robotics-simulation virtual-reality ">
-                            <a href="#" class="work"
-                               data-id="416"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1800">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/wing-glider.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Wing Glider" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Wing Glider</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 augmented-reality ">
-                            <a href="#" class="work"
-                               data-id="425"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="1900">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/Robi-bijoy-itihash.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Bijoy Itihash" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Bijoy Itihash</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 video-games ">
-                            <a href="#" class="work"
-                               data-id="428"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="2000">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/Marks_active-school.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Marks Active School" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Marks Active School</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 video-games web-games ">
-                            <a href="#" class="work"
-                               data-id="431"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="2100">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/safty-week.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Safety Week" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Safety Week</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 virtual-reality ">
-                            <a href="#" class="work"
-                               data-id="434"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="2200">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/Skitto-VR_world.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Skitto VR World" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Skitto VR World</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                    
-                        <div class="col-xs-12 col-sm-6 col-md-3 kinect-motion video-games ">
-                            <a href="#" class="work"
-                               data-id="439"
-                               data-link=""
-                               data-appear-animation="fadeInDown"
-                               data-appear-animation-delay="2300">
-                                <div class="image">
-                                    <img width="270" height="167" src="https://www.alienide.com/wp-content/uploads/2019/05/Dress_room-1.png" class="attachment-270x182 size-270x182 wp-post-image" alt="Virtual Fitting Room" loading="lazy" />                                    </div>
-
-                                <div class="hover"><i class="fa fa-arrows-alt"></i></div>
-
-                                <h3 class="title">Virtual Fitting Room</h3>
-                            </a><!-- .work -->
-                        </div>
-
-                                            
-                
-            </div><!-- .filter-elements -->
+<!-- .filter-elements -->
+            @endforeach
+            @endforeach
+        </div>
         </div><!-- .filter-box -->
 
     
@@ -621,186 +259,28 @@
 
     <div class="team-carousel">
         <div class="row carousel carousel-white bottom-navigation" data-options='{"itemsCustom": [[0, 1],[768, 2],[992, 3]], "navigation": true}'>
+        @foreach ( $teams as $team)
+    
 
-                            <div class="col-sm-6 col-md-4">
+             <div class="col-sm-6 col-md-4">
                 <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="200">
 
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2015/07/razif-bhai-120x174.jpg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Md Mahmudul Haque (Razif)" loading="lazy" /></div>
+                                            <div class="image"><img width="120" height="174" src="{{asset('uploads/'.$team->image)}}" class="attachment-team-thumb size-team-thumb wp-post-image" alt="{{$team->name}}" loading="lazy" /></div>
                     
                     <div class="employee-content">
-                        <h3 class="title">Md Mahmudul Haque (Razif)</h3>
+                        <h3 class="title">{{$team->name}}</h3>
 
-                        <div class="post">Team Leader</div>
+                        <div class="post">{{$team->position}}</div>
 
-                        <div class="description">Responsible for managing the whole game team and strategic planning and also critical decisions.</div>
+                        <div class="description">{{$team->description}}</div>
 
                         <div class="social"></div>                        </div>
                     <div class="clearfix"></div>
-                </div><!-- .employee -->
+                </div><!-- .employee -->              
+            </div>   
+            @endforeach             
+            
 
-                
-                                
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="300">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2015/07/sakib-120x174.jpg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Md. Sakib Hasan" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Md. Sakib Hasan</h3>
-
-                        <div class="post">Unity Developer</div>
-
-                        <div class="description">Unity developer, dedicated for building hyper-casual games.</div>
-
-                        <div class="social"></div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                </div>
-                                <div class="col-sm-6 col-md-4">
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="400">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2015/07/reshad-bhai-120x174.jpg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Reshad Bin Kibria" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Reshad Bin Kibria</h3>
-
-                        <div class="post">Lead Programmer</div>
-
-                        <div class="description">Lead Programmer, he implements all the game logic and core game mechanics.</div>
-
-                        <div class="social"></div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                
-                                
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="500">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2015/07/WhatsApp-Image-2022-02-28-at-2.05.54-PM-120x174.jpeg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Nur Hasan Raja" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Nur Hasan Raja</h3>
-
-                        <div class="post">Unity Developer</div>
-
-                        <div class="description">Unity Developer specialized in building interactive yet simple and also addictive hyper-casual games.</div>
-
-                        <div class="social"></div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                </div>
-                                <div class="col-sm-6 col-md-4">
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="600">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2015/07/Titu-bhai-120x174.jpeg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Titu Debnath" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Titu Debnath</h3>
-
-                        <div class="post">Creative Director</div>
-
-                        <div class="description">Creative director, responsible for all creative including all hyper-casual games that are under production.</div>
-
-                        <div class="social"></div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                
-                                
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="700">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2015/07/Istiak-Ahmed-120x174.jpg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Istiak Ahmed" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Istiak Ahmed</h3>
-
-                        <div class="post">Unity Developer</div>
-
-                        <div class="description">Unity developer works alongside other developers and helps build amazing hyper-casual games.</div>
-
-                        <div class="social"></div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                </div>
-                                <div class="col-sm-6 col-md-4">
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="800">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2015/07/sowad-120x174.jpg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Sayeed Mohammad Muntasir" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Sayeed Mohammad Muntasir</h3>
-
-                        <div class="post">CG Artist</div>
-
-                        <div class="description">responsible for creating any type of graphic or visual elements needed for the hyper-causal games.</div>
-
-                        <div class="social"></div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                
-                                
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="900">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2015/07/istiaque-arafat-120x174.jpg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Ishtiak Arafat" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Ishtiak Arafat</h3>
-
-                        <div class="post">Junior Unity Developer</div>
-
-                        <div class="description">helps the team to build and optimize the hyper-casual game.</div>
-
-                        <div class="social">
-            <a href="http://facebook.com" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-        
-            <a href="http://twitter.com" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-        
-            <a href="http://linkedin.com" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
-        
-            <a href="http://instagram.com" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a>
-        </div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                </div>
-                                <div class="col-sm-6 col-md-4">
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="1000">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2022/01/mahir-120x174.jpg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Mahir Ashhab" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Mahir Ashhab</h3>
-
-                        <div class="post">Business Development</div>
-
-                        <div class="description">responsible for any kind of communication with the clients or publishers.</div>
-
-                        <div class="social"></div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                
-                                
-                <div class="employee" data-appear-animation="zoomIn" data-appear-animation-delay="1100">
-
-                                            <div class="image"><img width="120" height="174" src="https://www.alienide.com/wp-content/uploads/2022/01/Azad-120x174.jpg" class="attachment-team-thumb size-team-thumb wp-post-image" alt="Ashraful Azad" loading="lazy" /></div>
-                    
-                    <div class="employee-content">
-                        <h3 class="title">Ashraful Azad</h3>
-
-                        <div class="post">Business Development</div>
-
-                        <div class="description">handles both client and developers end communications and feedback, and also project management.</div>
-
-                        <div class="social"></div>                        </div>
-                    <div class="clearfix"></div>
-                </div><!-- .employee -->
-
-                </div>
-                                
         </div><!-- .carousel -->
     </div><!-- .team-carousel -->
 
@@ -839,19 +319,19 @@ data-anchor="contact-us-2">
                                                 <div class="contact-info" data-appear-animation="fadeInLeft" data-appear-animation-delay="300">
                             <div class="icon"><i class="fa fa-mobile"></i></div>
                             <h4 class="title">Phone:</h4>
-                            <div class="text">+880 1730 433711</div>
+                            <div class="text">{{$siteSetting->phone}}</div>
                         </div><!-- .contact-info -->
                     
                                                 <div class="contact-info" data-appear-animation="fadeInLeft" data-appear-animation-delay="400">
                             <div class="icon"><i class="fa fa-envelope-o"></i></div>
                             <h4 class="title">Email:</h4>
-                            <div class="text"><a href="mailto:sync@alienide.com">sync@alienide.com</a></div>
+                            <div class="text"><a href="mailto:{{$siteSetting->email}}">{{$siteSetting->email}}</a></div>
                         </div><!-- .contact-info -->
                     
                                                 <div class="contact-info" data-appear-animation="fadeInLeft" data-appear-animation-delay="500">
                             <div class="icon"><i class="fa fa-map-marker"></i></div>
                             <h4 class="title">Address:</h4>
-                            <address class="text">House: 73, Road-13/A, Block: D, Banani, Dhaka-1213, Bangladesh</address>
+                            <address class="text">{{$siteSetting->address}}</address>
                         </div><!-- .contact-info -->
                     
                 </div>
@@ -882,14 +362,7 @@ data-anchor="contact-us-2">
         </div>
     </div>
 
-                <div
-            class="map-canvas"
-            data-zoom="7"
-            data-marker-url="https://www.alienide.com/wp-content/uploads/2018/08/spotlight-poi2.png"
-            data-lat="23.7912216"
-            data-lng="90.4048922"
-            data-title="Alienide Interactive"
-            data-content="House: 73, Road-13/A, Block: D, Banani, Dhaka-1213, Bangladesh"></div>
+                <div>{!!$siteSetting->map!!}</div>
     
 </div><!-- .section-content -->
 @endsection

@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Banar extends Model
+class Category extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'title',
-        'image',
-        'short_description',
-        'button_txt',
-        'active'
+        'name'
     ];
+    public function work(){
+        return $this->hasMany(Work::class);
+    }
+    
 }

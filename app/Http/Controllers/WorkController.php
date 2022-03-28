@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banar;
+use App\Models\Category;
+use App\Models\Work;
 use Illuminate\Http\Request;
 
-class BanarController extends Controller
+class WorkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class BanarController extends Controller
      */
     public function index()
     {
-        $banars = Banar::all();
-        return view('admin.banarsection',['banars' => $banars]);
+        $works = Work::all();
+        return view('admin.work',['works' => $works]);
     }
 
     /**
@@ -25,7 +26,8 @@ class BanarController extends Controller
      */
     public function create()
     {
-        return view('admin.banarForm');
+        $category = Category::all();
+        return view('admin.workForm', ['categorys'=>$category]);
     }
 
     /**
@@ -36,26 +38,26 @@ class BanarController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->input();
-        $this->validate($request,[
-            'image'        =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'title' => 'required',
-            'active' => 'required',
-        ]);
-        $banar = new Banar();
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('uploads', $filename);
-            $banar->image = $filename;
-        }
-     
-        $data = $request->all();
-        $data['image']= $banar->image;
-        $banar = Banar::create($data);
-        $banar->save();
-        return redirect()->back()->with('status', 'product add succesfully');
+       // return $request->input();
+       $this->validate($request,[
+        'image'        =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'title' => 'required',
+        'active' => 'required',
+    ]);
+    $work = new Work();
+    if($request->hasFile('image')){
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $file->move('uploads', $filename);
+        $work->image = $filename;
+    }
+ 
+    $data = $request->all();
+    $data['image']= $work->image;
+    $work = Work::create($data);
+    $work->save();
+    return redirect()->back()->with('status', 'add succesfully');
     }
 
     /**
@@ -77,8 +79,9 @@ class BanarController extends Controller
      */
     public function edit($id)
     {
-        $banar= Banar::find($id);
-        return view('admin.editBanar',["banar"=>$banar]);
+        $category= Category::all();
+        $work= Work::find($id);
+        return view('admin.editWork',["work"=>$work,"categorys"=>$category]);
     }
 
     /**
@@ -90,22 +93,22 @@ class BanarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $banar = Banar::find($id);
+        $work = Work::find($id);
         if($request->hasFile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
             $file->move('uploads', $filename);
-            $banar->image = $filename ;
+            $work->image = $filename ;
         }
         $data = $request->all();
-        $updimg = $banar['image'];
+        $updimg = $work['image'];
         $data['image']=isset($filename) ? $filename: $updimg;
         // $data['image']=$upd['image'];
         // dd( $data['image']);
-        $banar->update($data);
+        $work->update($data);
         // dd($data);
-        return redirect('admin/banar');
+        return redirect('admin/work');
     }
 
     /**
@@ -116,8 +119,8 @@ class BanarController extends Controller
      */
     public function destroy($id)
     {
-        $banar= Banar::find($id);
-        $banar->delete();
-        return redirect('admin/banar');
+        $work= Work::find($id);
+        $work->delete();
+        return redirect('admin/work');
     }
 }
