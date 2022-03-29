@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -36,6 +36,7 @@ class HomeController extends Controller
         $team = Team::all();
         $siteSetting = SiteSetting::latest()->first();
         return view('home', ["banarinfo" => $banar, "about" => $about, "work" => $work, "teams" => $team, "siteSetting" => $siteSetting,"categorys"=>$category]);
+        // return view('home', compact('banar','about','work','category','team','siteSetting'));
     }
     /**
      * Show the application dashboard.

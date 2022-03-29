@@ -21,7 +21,7 @@
 <link rel='stylesheet' id='promogear-fonts-css'  href='https://fonts.googleapis.com/css?family=Lato%3A100%2C300%2C400%2C700%2C900%2C100italic%2C300italic%2C400italic%2C700italic%2C900italic&#038;ver=5.5.5' type='text/css' media='all' />
 <link rel='stylesheet' id='promogear-bootstrap-css'  href='https://www.alienide.com/wp-content/themes/promogear/assets/css/bootstrap.css?ver=5.5.5' type='text/css' media='all' />
 <link rel='stylesheet' id='promogear-bootstrap-select-min-css'  href='https://www.alienide.com/wp-content/themes/promogear/assets/css/bootstrap-select.min.css?ver=5.5.5' type='text/css' media='all' />
-<link rel='stylesheet' id='promogear-font-awesome-min-css'  href='https://www.alienide.com/wp-content/themes/promogear/assets/css/font-awesome.min.css?ver=5.5.5' type='text/css' media='all' />
+<link rel='stylesheet' id='promogear-font-awesome-min-css'  href='{{asset('css/font-awesome.min.css')}}' type='text/css' media='all' />
 <link rel='stylesheet' id='promogear-animate-min-css'  href='https://www.alienide.com/wp-content/themes/promogear/assets/css/animate.min.css?ver=5.5.5' type='text/css' media='all' />
 <link rel='stylesheet' id='promogear-jquery-fullpage-css'  href='https://www.alienide.com/wp-content/themes/promogear/assets/css/jquery.fullPage.css?ver=5.5.5' type='text/css' media='all' />
 <link rel='stylesheet' id='promogear-morris-css'  href='https://www.alienide.com/wp-content/themes/promogear/assets/css/morris.css?ver=5.5.5' type='text/css' media='all' />
@@ -199,8 +199,8 @@ h1, .h1 {font-family: Miso;font-size: 56px;font-weight: 400;color: #d73e4d;text-
                 Follow Us<span class="caret"></span>
             </button>
 
-            <ul class="dropdown-menu" role="menu">                <li><a href="https://www.facebook.com/AlienideInteractive/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <li><a href="https://www.youtube.com/channel/UCiczP004MzC_IkiKSsYLskA/videos" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
+            <ul class="dropdown-menu" role="menu">                <li><a href="{{$siteSetting->facebook}}" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <li><a href="{{$siteSetting->youtube}}" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
             </ul>        </div>
     
 </div>                    
@@ -211,11 +211,11 @@ h1, .h1 {font-family: Miso;font-size: 56px;font-weight: 400;color: #d73e4d;text-
 
             <div class="header-menu" style="">
                 <nav id="main-menu" class="collapse navbar-collapse">
-                    <ul id="menu-main-menu" class="col-sm-12 col-md-6 nav navbar-nav"><li id="menu-item-1787" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1787"><a href="https://www.alienide.com/#home-section-2"><span>Home section</span></a></li>
-<li id="menu-item-158" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-158"><a href="https://www.alienide.com/#about-me"><span>About us</span></a></li>
-<li id="menu-item-159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-159"><a href="https://www.alienide.com/#works"><span>Works</span></a></li>
-<li id="menu-item-1783" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1783"><a href="https://www.alienide.com/#team"><span>Team</span></a></li>
-<li id="menu-item-1786" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1786"><a href="https://www.alienide.com/#contact-us-2"><span>Contact Us</span></a></li>
+                    <ul id="menu-main-menu" class="col-sm-12 col-md-6 nav navbar-nav"><li id="menu-item-1787" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1787"><a href="{{url('/')}}#home-section-2"><span>Home section</span></a></li>
+<li id="menu-item-158" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-158"><a href="{{url('/')}}#about-me"><span>About us</span></a></li>
+<li id="menu-item-159" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-159"><a href="{{url('/')}}#works"><span>Works</span></a></li>
+<li id="menu-item-1783" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1783"><a href="{{url('/')}}#team"><span>Team</span></a></li>
+<li id="menu-item-1786" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1786"><a href="{{url('/')}}#contact-us-2"><span>Contact Us</span></a></li>
 </ul>                    <div class="clearfix"></div>
                 </nav>
             </div><!-- .header-menu -->

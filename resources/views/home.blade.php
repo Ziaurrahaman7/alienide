@@ -11,7 +11,7 @@
 
 <div class="logo-box">
     <a href="https://www.alienide.com" class="logo">
-        <img src="https://www.alienide.com/wp-content/uploads/2017/04/ALiENIDE-Interactive-Logo-Top-Left.png"
+        <img src="{{asset('uploads/'.$siteSetting->logo)}}"
              width="600"
              height=""
              alt="" >
@@ -199,7 +199,7 @@
                 </div><!-- .navigation -->
                 <div class="single-work"></div>
             </div><!-- .works-opened -->
-            <div class="row filter-elements">
+                        <div class="row filter-elements">
 @foreach ($categorys as $category )
 @foreach($category->work as $work)
                         <div class="col-xs-12 col-sm-6 col-md-3 wc{{$category->id}} virtual-reality ">
